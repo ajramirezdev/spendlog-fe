@@ -33,12 +33,15 @@ export function SignupForm({
     try {
       setIsLoading(true);
       const { confirmPassword, ...otherFields } = data;
-      const response = await fetch("http://localhost:3000/api/auth/signup", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        credentials: "include",
-        body: JSON.stringify(otherFields),
-      });
+      const response = await fetch(
+        `${process.env.NEXT_PUBLIC_BACKEND_URL}/api/auth/signup`,
+        {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          credentials: "include",
+          body: JSON.stringify(otherFields),
+        }
+      );
 
       if (!response.ok) {
         throw new Error("Signup failed");
@@ -53,7 +56,11 @@ export function SignupForm({
   };
 
   const handleGoogleAuth = async () => {
-    window.location.href = "http://localhost:3000/api/auth/google";
+    window.location.href = `${process.env.NEXT_PUBLIC_BACKEND_URL}/api/auth/google`;
+  };
+
+  const handleDiscordAuth = async () => {
+    window.location.href = `${process.env.NEXT_PUBLIC_BACKEND_URL}/api/auth/discord`;
   };
 
   return (
@@ -131,6 +138,7 @@ export function SignupForm({
                   variant="outline"
                   type="button"
                   className="w-full  cursor-pointer"
+                  disabled
                 >
                   <Icons.gitHub />
                   <span className="sr-only">Login with GitHub</span>
@@ -148,6 +156,7 @@ export function SignupForm({
                   variant="outline"
                   type="button"
                   className="w-full  cursor-pointer"
+                  onClick={handleDiscordAuth}
                 >
                   <Icons.discord />
                   <span className="sr-only">Login with Discord</span>

@@ -59,11 +59,11 @@ export function LoginForm({
   };
 
   const handleGoogleAuth = async () => {
-    window.location.href = "http://localhost:3000/api/auth/google";
+    window.location.href = `${process.env.NEXT_PUBLIC_BACKEND_URL}/api/auth/google`;
   };
 
   const handleDiscordAuth = async () => {
-    window.location.href = "http://localhost:3000/api/auth/discord";
+    window.location.href = `${process.env.NEXT_PUBLIC_BACKEND_URL}/api/auth/discord`;
   };
 
   return (
@@ -119,6 +119,7 @@ export function LoginForm({
                   variant="outline"
                   type="button"
                   className="w-full cursor-pointer"
+                  disabled
                 >
                   <Icons.gitHub />
                   <span className="sr-only">Login with GitHub</span>

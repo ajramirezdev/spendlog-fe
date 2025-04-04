@@ -94,12 +94,15 @@ export const useExpenseStore = create<ExpenseState>((set) => ({
   },
   addExpense: async (data) => {
     try {
-      const response = await fetch("http://localhost:3000/api/expenses", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        credentials: "include",
-        body: JSON.stringify(data),
-      });
+      const response = await fetch(
+        `${process.env.NEXT_PUBLIC_BACKEND_URL}/api/expenses`,
+        {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          credentials: "include",
+          body: JSON.stringify(data),
+        }
+      );
 
       if (!response.ok) {
         throw new Error("Invalid credentials");
@@ -144,7 +147,7 @@ export const useExpenseStore = create<ExpenseState>((set) => ({
   editExpense: async (data, expenseId) => {
     try {
       const response = await fetch(
-        `http://localhost:3000/api/expenses/${expenseId}`,
+        `${process.env.NEXT_PUBLIC_BACKEND_URL}/api/expenses/${expenseId}`,
         {
           method: "PUT",
           headers: { "Content-Type": "application/json" },
@@ -180,7 +183,7 @@ export const useExpenseStore = create<ExpenseState>((set) => ({
   deleteExpense: async (expenseId) => {
     try {
       const response = await fetch(
-        `http://localhost:3000/api/expenses/${expenseId}`,
+        `${process.env.NEXT_PUBLIC_BACKEND_URL}/api/expenses/${expenseId}`,
         {
           method: "DELETE",
           headers: { "Content-Type": "application/json" },

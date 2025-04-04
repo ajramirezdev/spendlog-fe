@@ -16,8 +16,6 @@ interface UserState {
   logout: () => Promise<void>;
 }
 
-const BACKEND_URL = process.env.NEXT_PUBLIC_BACKEND_URL;
-
 export const useUserStore = create<UserState>((set) => ({
   user: null,
   isLoading: true,
@@ -25,9 +23,12 @@ export const useUserStore = create<UserState>((set) => ({
   fetchUser: async () => {
     try {
       set({ isLoading: true });
-      const res = await fetch(`${BACKEND_URL}/api/auth/me`, {
-        credentials: "include",
-      });
+      const res = await fetch(
+        `${process.env.NEXT_PUBLIC_BACKEND_URL}/api/auth/me`,
+        {
+          credentials: "include",
+        }
+      );
 
       if (!res.ok) {
         set({ user: null, isLoading: false });
@@ -44,7 +45,7 @@ export const useUserStore = create<UserState>((set) => ({
 
   logout: async () => {
     set({ isLoading: true });
-    await fetch(`${BACKEND_URL}/api/auth/logout`, {
+    await fetch(`${process.env.NEXT_PUBLIC_BACKEND_URL}/api/auth/logout`, {
       method: "POST",
       credentials: "include",
     });
