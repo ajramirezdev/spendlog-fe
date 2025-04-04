@@ -52,6 +52,10 @@ export function SignupForm({
     }
   };
 
+  const handleGoogleAuth = async () => {
+    window.location.href = "http://localhost:3000/api/auth/google";
+  };
+
   return (
     <div className={cn("flex flex-col gap-6", className)} {...props}>
       <Card className="overflow-hidden p-0">
@@ -135,6 +139,7 @@ export function SignupForm({
                   variant="outline"
                   type="button"
                   className="w-full cursor-pointer"
+                  onClick={handleGoogleAuth}
                 >
                   <Icons.google />
                   <span className="sr-only">Login with Google</span>

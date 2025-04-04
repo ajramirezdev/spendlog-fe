@@ -13,6 +13,7 @@ import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import LoadingSpinner from "./ui/loading-spinner";
 import { Icons } from "@/components/icons";
+import { useUserStore } from "@/stores/useUserStore";
 
 export function LoginForm({
   className,
@@ -21,6 +22,7 @@ export function LoginForm({
   const router = useRouter();
   const [isLoading, setIsLoading] = useState(false);
   const [errorMessage, setErrorMessage] = useState("");
+  const { fetchUser } = useUserStore();
 
   const {
     register,
@@ -33,18 +35,22 @@ export function LoginForm({
   const onSubmit = async (data: LoginInput) => {
     try {
       setIsLoading(true);
-      const response = await fetch("http://localhost:3000/api/auth/login", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        credentials: "include",
-        body: JSON.stringify(data),
-      });
+      const response = await fetch(
+        `${process.env.NEXT_PUBLIC_BACKEND_URL}/api/auth/login`,
+        {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          credentials: "include",
+          body: JSON.stringify(data),
+        }
+      );
 
       if (!response.ok) {
         throw new Error("Invalid credentials");
       }
 
       setIsLoading(false);
+      await fetchUser();
       router.push("/");
     } catch (error: any) {
       setErrorMessage(error.message);
@@ -54,6 +60,10 @@ export function LoginForm({
 
   const handleGoogleAuth = async () => {
     window.location.href = "http://localhost:3000/api/auth/google";
+  };
+
+  const handleDiscordAuth = async () => {
+    window.location.href = "http://localhost:3000/api/auth/discord";
   };
 
   return (
@@ -126,9 +136,10 @@ export function LoginForm({
                   variant="outline"
                   type="button"
                   className="w-full cursor-pointer"
+                  onClick={handleDiscordAuth}
                 >
                   <Icons.discord />
-                  <span className="sr-only">Login with Apple</span>
+                  <span className="sr-only">Login with Discord</span>
                 </Button>
               </div>
               <div className="text-center text-sm">
