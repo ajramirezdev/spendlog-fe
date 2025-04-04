@@ -1,7 +1,7 @@
 import { format, parseISO, startOfWeek, endOfWeek } from "date-fns";
 
 export const formatChartDate = (
-  value: any,
+  value: string,
   period: string,
   formatType: "tick" | "label" = "tick"
 ): string => {

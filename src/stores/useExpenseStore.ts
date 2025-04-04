@@ -140,7 +140,7 @@ export const useExpenseStore = create<ExpenseState>((set) => ({
           },
         };
       });
-    } catch (error: any) {
+    } catch (error) {
       console.error("Failed to add user expense:", error);
     }
   },
@@ -176,7 +176,7 @@ export const useExpenseStore = create<ExpenseState>((set) => ({
           },
         };
       });
-    } catch (error: any) {
+    } catch (error) {
       console.error("Failed to update expense:", error);
     }
   },
@@ -210,7 +210,7 @@ export const useExpenseStore = create<ExpenseState>((set) => ({
           },
         };
       });
-    } catch (error: any) {
+    } catch (error) {
       console.error("Failed to delete expense:", error);
     }
   },

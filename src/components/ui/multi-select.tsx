@@ -1,12 +1,6 @@
 import * as React from "react";
 import { cva, type VariantProps } from "class-variance-authority";
-import {
-  CheckIcon,
-  XCircle,
-  ChevronDown,
-  XIcon,
-  WandSparkles,
-} from "lucide-react";
+import { CheckIcon, XCircle, ChevronDown, XIcon } from "lucide-react";
 
 import { cn } from "@/lib/utils";
 import { Separator } from "@/components/ui/separator";
@@ -26,7 +20,6 @@ import {
   CommandList,
   CommandSeparator,
 } from "@/components/ui/command";
-import { ScrollArea } from "@/components/ui/scroll-area";
 
 /**
  * Variants for the multi-select component to handle different styles.
@@ -141,7 +134,7 @@ export const MultiSelect = React.forwardRef<
     const [selectedValues, setSelectedValues] =
       React.useState<string[]>(defaultValue);
     const [isPopoverOpen, setIsPopoverOpen] = React.useState(false);
-    const [isAnimating, setIsAnimating] = React.useState(false);
+    const [isAnimating] = React.useState(false);
     const touchStartRef = React.useRef<number | null>(null);
 
     const handleInputKeyDown = (

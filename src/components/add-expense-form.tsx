@@ -26,7 +26,7 @@ import { useExpenseStore } from "@/stores/useExpenseStore";
 
 export default function AddExpenseForm() {
   const [open, setOpen] = useState(false);
-  const [isLoading, setIsLoading] = useState(false);
+  const [isLoading] = useState(false);
   const tagOptions = useMemo(() => tagsList(), []);
   const { addExpense } = useExpenseStore();
 
@@ -64,7 +64,8 @@ export default function AddExpenseForm() {
         <DialogHeader>
           <DialogTitle>Add Expense</DialogTitle>
           <DialogDescription>
-            Create your new expense profile here. Click save when you're done.
+            Create your new expense profile here. Click save when you&apos;re
+            done.
           </DialogDescription>
         </DialogHeader>
         <form onSubmit={handleSubmit(onSubmit)} className="grid gap-6 py-4">

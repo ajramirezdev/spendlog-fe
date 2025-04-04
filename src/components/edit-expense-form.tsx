@@ -26,14 +26,12 @@ import { DatePicker } from "./date-picker";
 import { format } from "date-fns";
 import { toast } from "sonner";
 import { useExpenseStore } from "@/stores/useExpenseStore";
-import { useUserStore } from "@/stores/useUserStore";
 
 import { Trash2 } from "lucide-react";
 
 export default function EditExpenseForm({ row }: { row: Row<IExpense> }) {
   const expense = row.original;
   const [open, setOpen] = useState(false);
-  const [isLoading, setIsLoading] = useState(false);
   const tagOptions = useMemo(() => tagsList(), []);
   const { editExpense, deleteExpense } = useExpenseStore();
 
@@ -87,7 +85,7 @@ export default function EditExpenseForm({ row }: { row: Row<IExpense> }) {
         <SheetHeader>
           <SheetTitle>Edit expense</SheetTitle>
           <SheetDescription>
-            Make changes to your expense here. Click save when you're done.
+            Make changes to your expense here. Click save when you&apos;re done.
           </SheetDescription>
         </SheetHeader>
         <form

@@ -52,8 +52,8 @@ export function LoginForm({
       setIsLoading(false);
       await fetchUser();
       router.push("/");
-    } catch (error: any) {
-      setErrorMessage(error.message);
+    } catch (error) {
+      setErrorMessage("Invalid Credentials");
       setIsLoading(false);
     }
   };

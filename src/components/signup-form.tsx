@@ -49,8 +49,8 @@ export function SignupForm({
 
       setIsLoading(false);
       router.push("/");
-    } catch (error: any) {
-      setErrorMessage(error.message);
+    } catch (error) {
+      setErrorMessage("Invalid");
       setIsLoading(false);
     }
   };
